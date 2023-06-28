@@ -41,7 +41,7 @@ export class ProductCatalogComponent {
     32: '../../../assets/produts/higiene.jpg',
     33: '../../../assets/produts/hortfrut.jpg',
     34: '../../../assets/produts/petshop.jpg',
-    // Adicione outras associações de ID da categoria para URL da imagem
+    
   };
 
   constructor(private productService: ProductsService) {
