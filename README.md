@@ -2,27 +2,21 @@
 
 ![Marketplace](marketplace.png)
 
-Bem-vindo ao Projeto Marketplace! Este projeto tem como objetivo ilustrar um marketplace, fornecendo uma plataforma virtual onde vendedores podem oferecer produtos e compradores podem realizar compras de forma prática e segura.
+Bem-vindo ao Projeto Marketplace! Este projeto tem como objetivo ilustrar um marketplace, fornecendo uma plataforma virtual onde o cliente pode acessar e visualizar todos os produtos, dessa forma podendo adicionar ao carrinho e realizar compras de forma prática e segura.
 
 ## Funcionalidades Principais
 
-- Cadastro de usuários (vendedores e compradores) com autenticação segura.
 - Listagem de produtos disponíveis para compra.
-- Pesquisa de produtos por categoria, preço, palavras-chave, etc.
 - Adição de produtos ao carrinho de compras.
-- Finalização de compra com cálculo de frete e opções de pagamento.
-- Gerenciamento de pedidos.
-- Avaliação e feedback dos vendedores e produtos.
-- E muito mais!
+
 
 ## Tecnologias Utilizadas
 
 - Laravel: Um poderoso framework PHP para o desenvolvimento de aplicações web.
-- MySQL: Um sistema de gerenciamento de banco de dados relacional.
+- PostgreSQL: Um sistema de gerenciamento de banco de dados relacional.
 - HTML/CSS: Linguagens de marcação e estilo para a construção das páginas web.
 - JavaScript: Uma linguagem de programação utilizada para interatividade do lado do cliente.
-- Bootstrap: Um framework CSS popular para criar interfaces responsivas e atrativas.
-- Outras bibliotecas e ferramentas podem ser utilizadas dependendo das necessidades do projeto.
+- Typescript: um framework de tipagem de funções
 
 ## Requisitos de Instalação
 
