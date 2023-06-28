@@ -64,5 +64,10 @@ php artisan migrate
 7. Inicie o servidor de desenvolvimento:
 php artisan serve
 
+## Ao Executar o backend depois de instalar todas as dependências e configurar todas as tabelas que exigem ao uso do projeto, você poderá utilizar as rotas.
 
+### Um exemplo de como você pode listar as rotas é a seguinte:
+ 
+
+### Agora você pode dar continuidade com todas as outras rotas. Estou listando todas as rotas desse projeto
 
