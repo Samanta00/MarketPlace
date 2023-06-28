@@ -11,40 +11,32 @@ export class ProductsService {
 
   constructor(private http: HttpClient) { }
 
+  //rota para visualizar lista de produtos de estoque pelo supermercado
   public getProducts(): Observable<any[]> {
     return this.http.get<any[]>(`${this.SERVER_URL}/api/products`);
   }
 
-  public getProductsbyId(): Observable<any[]> {
-    return this.http.get<any[]>(`${this.SERVER_URL}/api/products/id`);
-  }
-
-
-  public postProduct(product: any): Observable<any> {
-    return this.http.post<any>(`${this.SERVER_URL}/api/products`,product);
-  }
-
-  public editProduct(id: any, product: ProductModel): Observable<any> {
-    return this.http.put<any>(`${this.SERVER_URL}/api/update/${id}`, product);
-  }
-  
-  public deleteProduct(id: any): Observable<any> {
-    return this.http.delete<any>(`${this.SERVER_URL}/api/delete/${id}`);
-  }
-
+ //rota para visualizar categooria
   public getCategories(): Observable<any[]> {
     return this.http.get<any[]>(`${this.SERVER_URL}/api/categories`);
   }
 
+  //rota para visualizar cart
   public getCart(): Observable<any[]> {
     return this.http.get<any[]>(`${this.SERVER_URL}/api/cart`);
   }
+
+  //rota para adicionar valores a cart
   public postCart(product: any): Observable<any> {
     return this.http.post<any>(`${this.SERVER_URL}/api/cart`,product);
   }
+
+  //rotas para deleter valores a cart
   public deleteCart(id: any): Observable<any> {
     return this.http.delete<any>(`${this.SERVER_URL}/api/cart/${id}`);
   }
+
+  //rotas para editar valores a cart
   public editCart(id: any, product: ProductModel): Observable<any> {
     return this.http.put<any>(`${this.SERVER_URL}/api/cartupdate/${id}`, product);
   }
