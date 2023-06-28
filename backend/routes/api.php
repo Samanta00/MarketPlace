@@ -39,3 +39,6 @@ Route::post('/cart', [CartClientController::class, 'store']);
 Route::put('/cartupdate/{id}', [CartClientController::class, 'update']);
 Route::delete('/cart/{id}', [CartClientController::class, 'destroy']);
 
+
+Route::get('/image', [ImageProductController::class, 'show']);
+Route::post('/image', [ImageProductController::class, 'create']);
