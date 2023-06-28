@@ -3,6 +3,7 @@ import { ProductsService } from 'src/app/services/services/products.service';
 import { Subject } from 'rxjs';
 import { switchMap } from 'rxjs/operators';
 
+//armazenamento para valores de produtos
 interface Product {
   id: number;
   product_name: string;
@@ -11,21 +12,21 @@ interface Product {
   expiration_date: Date;
   stock_quantity: number;
   perishable_product: boolean;
-  quantity?: number; // Adicione essa linha com "?" para tornar a propriedade opcional
+  quantity?: number; 
 }
-
-
+//armazenamento para valores de categorias
 interface Categories {
   id: number;
   category_gender: string;
   created_at: string;
   updated_at: string;
 }
+//armazenamento para agrupamento de produtos por categoria
 interface GroupedProduct {
   category: string;
   products: Product[];
 }
-
+//armazenamento para a model de produto
 interface ProductModel {
   id: number;
   product_name: string;
@@ -34,16 +35,15 @@ interface ProductModel {
   expiration_date: Date;
   stock_quantity: number;
   perishable_product: boolean;
-  selectedCategory?: number; // Adicione esta linha com "?" para tornar a propriedade opcional
+  selectedCategory?: number; 
 }
 
+//armazenamento para itens adicionados ao carrinho
 interface CartItem {
   product: Product;
   quantity: number;
   totalPrice: number;
 }
-
-
 
 
 
@@ -62,8 +62,7 @@ export class CartComponent {
   filteredProductsByCategory: GroupedProduct[] = [];
   cartItemQuantities: { [productId: number]: number } = {};
 
-
-
+ //objeto com os valores para novos produtos
   newProduct: Product & { selectedProduct: string, selectedCategory: number | null, quantity: number } = {
     id: 0,
     product_name: '',
@@ -74,10 +73,9 @@ export class CartComponent {
     perishable_product: true,
     selectedProduct: '',
     selectedCategory: null,
-    quantity: 0 // Adicione essa linha para inicializar a propriedade quantity com o valor 0
+    quantity: 0 
   };
-  
-
+  //objetos com os valores para editar os produtos
   editedProduct: ProductModel & { selectedProduct: string, selectedCategory?: number } = {
     id: 0,
     product_name: '',
@@ -88,20 +86,15 @@ export class CartComponent {
     perishable_product: true,
     selectedProduct: '',
   };
-  
-  
-  
+ 
   showEditFormFlag: boolean = false;
   quantity: number = 0;
   totalPrice: number = 0;
   stockMessage: string = '';
-
-
-
   private refreshProducts$ = new Subject<void>(); // Subject para acionar a atualização dos produtos
-
   constructor(private productService: ProductsService) { }
 
+  //inicializador que chama todas as funções
   ngOnInit() {
     this.refreshProducts$
       .pipe(
@@ -125,7 +118,7 @@ export class CartComponent {
     this.selectedCategory = null;
     this.listCategories();
   }
-
+//lista os produtos
   listProducts() {
     this.refreshProducts$.next(); // Aciona a atualização dos produtos
     this.filteredProducts = []; // Limpa a lista de produtos filtrados
@@ -144,40 +137,32 @@ export class CartComponent {
   }
   
   
-  
+//adiciona novos produtos ao carrinho
   addProductToCart(event: any) {
     event.preventDefault();
+
     const selectedProductName = this.newProduct.selectedProduct;
     const selectedProduct = this.products.find(product => product.product_name === selectedProductName);
-  
-    if (selectedProduct) {
-      if (this.newProduct.quantity > selectedProduct.stock_quantity) {
-        console.log('Quantidade excede o estoque disponível');
-        return;
-      }
-  
-      this.cartItems.push(selectedProduct); // Adicionar o produto selecionado ao carrinho
-      console.log(selectedProduct);
-  
-      // Realizar operações com a quantidade e o estoque
-      const remainingStock = selectedProduct.stock_quantity - this.newProduct.quantity;
-      const message = `Você adicionou ${this.newProduct.quantity} unidades do produto ${selectedProduct.product_name}.
-        O estoque restante é ${remainingStock}.`;
-        this.stockMessage = `Estoque restante do produto ${selectedProduct.product_name}: ${remainingStock}`;
-
-      console.log(message);
-  
-      this.productService.postCart(selectedProduct).subscribe(
-        (response: Product) => {
-          console.log('Produto criado com sucesso e adicionado ao carrinho', response);
-          this.resetForm();
-          this.refreshProducts$.next(); // Acionar atualização dos produtos
-        },
-        (error) => {
-          console.log(error);
-        }
-      );
+    
+    if (!selectedProduct) return;
+    if (this.newProduct.quantity > selectedProduct.stock_quantity) return console.log('Quantidade excede o estoque disponível');
+    if (!this.newProduct.quantity || this.newProduct.quantity<0) {
+      this.stockMessage = 'A quantidade precisa ser preenchida.';
+      return;
     }
+    this.cartItems.push(selectedProduct);
+    const remainingStock = selectedProduct.stock_quantity - this.newProduct.quantity;
+    this.stockMessage = `Estoque restante do produto ${selectedProduct.product_name}: ${remainingStock}`;
+    
+    this.productService.postCart(selectedProduct).subscribe(
+      (response: Product) => {
+        console.log('Produto criado com sucesso e adicionado ao carrinho', response);
+        this.resetForm();
+        this.refreshProducts$.next();
+      },
+      (error) => console.log(error)
+    );
+
     this.addToCart();
   }
   
@@ -189,7 +174,7 @@ export class CartComponent {
   }
 
 
-
+//edita os produtos
   editProduct() {
     if (this.editedProduct.id !== null && this.editedProduct.id !== undefined) {
       this.editedProduct.product_name = this.editedProduct.selectedProduct;
@@ -211,7 +196,7 @@ export class CartComponent {
   }
 
   
-  
+//remove os produtos de carrinho
 removeItemFromCart(productId: number) {
   // Remova o item do servidor
   this.productService.deleteCart(productId).subscribe(
@@ -225,7 +210,7 @@ removeItemFromCart(productId: number) {
     }
   );
 }
-
+//adiciona ao carrinho
 addToCart() {
   const selectedProduct = this.products.find(product => product.product_name === this.editedProduct.selectedProduct);
   if (selectedProduct) {
@@ -252,33 +237,20 @@ addToCart() {
   }
 }
 
-
-
-
+//mostra o formulário de produtos adicionados ao carrinho
 showEditForm(product: ProductModel) {
   this.editedProduct = { ...product, selectedProduct: product.product_name, selectedCategory: product.category_id };
   this.filterProductsByCategoryInEditForm();
   this.showEditFormFlag = true;
 }
 
-
+ //faz o listamento de categoria por nome
   getCategoryName(categoryId: number): string {
     const category = this.categories.find(cat => cat.id === categoryId);
     return category ? category.category_gender : '';
   }
 
-  refreshProducts() {
-    this.productService.getProducts().subscribe(
-      (data: Product[]) => {
-        this.products = data;
-        console.log(this.products);
-      },
-      (error) => {
-        console.log(error);
-      }
-    );
-  }
-
+//lista todos os nomes de categoria
   listCategories() {
     this.productService.getCategories().subscribe(
       (data: Categories[]) => {
@@ -289,19 +261,19 @@ showEditForm(product: ProductModel) {
       }
     );
   }
+  //lista os itens do carrinho
   listCartItems() {
   this.productService.getCart().subscribe(
     (data: any[]) => {
       this.cartItems = data;
       console.log(data)
-      this.calculateTotalPrice(); // Calcula o preço total dos itens no carrinho
     },
     (error) => {
       console.log(error);
     }
   );
   }
-
+ //filtra produtos por categoria
   filterProductsByCategory() {
     const categoryId = this.newProduct.category_id;
     const selectedCategoryId = this.editedProduct.selectedCategory;
@@ -329,8 +301,7 @@ showEditForm(product: ProductModel) {
     }
   }
   
-  
-  
+  //filtra os produtos por categoria no formulario de edição
   filterProductsByCategoryInEditForm() {
     const selectedCategoryId = this.editedProduct.selectedCategory;
     const selectedCategory = this.categories.find(category => category.id === selectedCategoryId);
@@ -343,15 +314,6 @@ showEditForm(product: ProductModel) {
     }
   }
   
-  
-calculateTotalPrice() {
-  this.totalPrice = this.cartItems.reduce((total, item) => total + (item.product_price * item.quantity), 0);
-}
-
-
-  updateTotalPrice() {
-    this.calculateTotalPrice();
-  }
   isCategorySelected(categoryId: number): boolean {
     return this.products.some(product => product.category_id === categoryId);
   }
