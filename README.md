@@ -64,10 +64,49 @@ php artisan migrate
 7. Inicie o servidor de desenvolvimento:
 php artisan serve
 
-## Ao Executar o backend depois de instalar todas as dependências e configurar todas as tabelas que exigem ao uso do projeto, você poderá utilizar as rotas.
+ Ao Executar o backend depois de instalar todas as dependências e configurar todas as tabelas que exigem ao uso do projeto, você poderá utilizar as rotas.
 
-### Um exemplo de como você pode listar as rotas é a seguinte:
+ Um exemplo de como você pode listar as rotas é a seguinte:
+![rota1](https://github.com/Samanta00/Marketplace/assets/80990432/841b1ff0-6460-478a-819e-8dae18df2352)
+
  
+ Agora você pode dar continuidade com todas as outras rotas. Estou listando todas as rotas desse projeto
 
-### Agora você pode dar continuidade com todas as outras rotas. Estou listando todas as rotas desse projeto
+Rotas de Produtos:
+utilize o GET para ler a rota
+http://127.0.0.1:8000/api/products
 
+utilize o POST para adicionar novos valores a rota
+http://127.0.0.1:8000/api/products
+
+utilize o GET passando um id especifico que queira visualizar tal produto
+http://127.0.0.1:8000/api/view/{id}
+
+utilize o PUT passando um id especifico que queira alterar tal produto
+http://127.0.0.1:8000/api/update/{id}
+
+utilize o DELETE passando um id especifico que queira alterar tal produto
+http://127.0.0.1:8000/api/delete/{id}
+
+Rotas Para Categoria
+utilize o GET para ler a rota
+http://127.0.0.1:8000/api/categories
+
+utilize o POST para adicionar novos valores a rota
+http://127.0.0.1:8000/api/categories
+
+utilize o DELETE passando um id especifico que queira alterar tal categoria
+http://127.0.0.1:8000/api/categories/{id}
+
+Rotas Para Cart
+utilize o GET para ler a rota
+http://127.0.0.1:8000/api/cart
+
+utilize o POST para adicionar novos valores a rota
+http://127.0.0.1:8000/api/cart
+
+utilize o PUT passando um id especifico que queira alterar tal produto
+http://127.0.0.1:8000/api/cartupdate/{id}
+
+utilize o DELETE passando um id especifico que queira alterar tal produto do carrinho de compras
+http://127.0.0.1:8000/api/cart/{id}
