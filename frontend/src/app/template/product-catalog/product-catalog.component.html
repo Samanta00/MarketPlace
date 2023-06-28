@@ -11,7 +11,7 @@
     <div *ngFor="let product of filteredProducts" class="product-item">
       <div class="product-name">{{ product.product_name }}</div>
       <div class="product-price">{{ product.product_price | currency }}</div>
-      <img [src]="product.image" alt="{{ product.product_name }}">
+      <img [src]="product.image" alt="{{ product.product_name }}" class="product-image">
     </div>
   </div>
 

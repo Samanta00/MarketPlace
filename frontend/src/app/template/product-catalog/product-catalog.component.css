@@ -50,4 +50,7 @@
   .product-price {
     color: #888;
   }
+  .product-image {
+    width: 200px; 
+  }
   
