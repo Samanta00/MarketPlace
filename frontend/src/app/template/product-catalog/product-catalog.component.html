@@ -11,8 +11,11 @@
     <div *ngFor="let product of filteredProducts" class="product-item">
       <div class="product-name">{{ product.product_name }}</div>
       <div class="product-price">{{ product.product_price | currency }}</div>
+      <img [src]="product.image" alt="{{ product.product_name }}">
     </div>
   </div>
+
+  
 
   <h3>Gostou das Nossas ofertas?</h3>
   <p>Venha encher o seu carrinho de compras</p>
