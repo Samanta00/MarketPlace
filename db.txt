@@ -1,0 +1,7 @@
+Para utilizar o banco de dados utilize 
+ DB_CONNECTION=pgsql
+ DB_HOST=snuffleupagus.db.elephantsql.com
+ DB_PORT=5432
+ DB_DATABASE=dllpzhjv
+ DB_USERNAME=dllpzhjv
+ DB_PASSWORD=gAiRTM_M_R_svn4kUOHesFkSLkIm1Izu
