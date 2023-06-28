@@ -22,15 +22,11 @@
 
     <div class="form-group">
       <label for="new-quantity">Quantidade</label>
-      <input type="number" id="new-quantity" name="new-quantity" [(ngModel)]="newProduct.quantity" (change)="calculateTotalPrice()" required>
+      <input type="number" id="new-quantity" name="new-quantity" [(ngModel)]="newProduct.quantity" required>
+      <p *ngIf="!newProduct.quantity" class="quantity-error">A quantidade precisa ser preenchida.</p>
     </div>
     
-    <div class="form-group">
-      <label for="price">Preço</label>
-      <p class="total-price">Preço Total de Itens Adicionados: R$ {{ totalPrice.toFixed(2) }}</p>
-    </div>
-    
-    <button type="submit">Adicionar ao Carrinho</button>
+    <button class="add-button" type="submit">Adicionar ao Carrinho</button>
     <p *ngIf="stockMessage" class="stock-message">{{ stockMessage }}</p>
   </form>
 
@@ -42,7 +38,6 @@
         <button class="remove-button" (click)="removeItemFromCart(product.id)">Remover</button>
       </div>
       <p class="product-name">{{ product.product_name }}</p>
-      <p class="product-price">R${{ product.product_price }}</p>
       <p class="product-category">{{ getCategoryName(product.category_id) }}</p>
     </div>    
   </div>
@@ -76,11 +71,8 @@
         <label for="edit-quantity">Quantidade</label>
         <input type="number" id="edit-quantity" name="edit-quantity" [(ngModel)]="editedProduct.stock_quantity" required>
       </div>
-      <div class="form-group">
-        <label for="edit-price">Preço</label>
-        <input type="number" id="edit-price" name="edit-price" [(ngModel)]="editedProduct.product_price" required>
-      </div>
-      <button type="submit">Atualizar</button>
+
+      <button class="add-button" type="submit">Atualizar</button>
     </form>
   </div>
 </div>

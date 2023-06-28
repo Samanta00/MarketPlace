@@ -22,16 +22,42 @@ select {
   font-size: 16px;
 }
 
-button {
+button.add-button {
   padding: 8px 16px;
-  background-color: #4CAF50;
+  background-color: #4CAF50; /* Verde */
   color: white;
   border: none;
   cursor: pointer;
 }
 
-button:hover {
-  background-color: #45a049;
+button.add-button:hover {
+  background-color: #45a049; /* Tom mais claro de verde */
+}
+
+button.edit-button {
+  /* Estilos para o botão Editar */
+  padding: 8px 16px;
+  background-color: orange; /* Laranja */
+  color: white;
+  border: none;
+  cursor: pointer;
+}
+
+button.edit-button:hover {
+  background-color: darkorange; /* Tom mais escuro de laranja */
+}
+
+button.remove-button {
+  /* Estilos para o botão Remover */
+  padding: 8px 16px;
+  background-color: red; /* Vermelho */
+  color: white;
+  border: none;
+  cursor: pointer;
+}
+
+button.remove-button:hover {
+  background-color: darkred; /* Tom mais escuro de vermelho */
 }
 
 .cart-items {
