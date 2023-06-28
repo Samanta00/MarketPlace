@@ -1,10 +1,11 @@
 # Projeto Marketplace
 
-![Marketplace](marketplace.png)
+![Bonanza](https://github.com/Samanta00/Marketplace/assets/80990432/92681aa7-ecca-46d2-b858-7b8614a7b9a7)
 
 Bem-vindo ao Projeto Marketplace! Este projeto tem como objetivo ilustrar um marketplace, fornecendo uma plataforma virtual onde o cliente pode acessar e visualizar todos os produtos, adicioná-los ao carrinho e realizar compras de forma prática e segura.
 
-## Funcionalidades Principais
+## Funcionalidad
+es Principais
 
 - Listagem de produtos disponíveis para compra.
 - Adição de produtos ao carrinho de compras.
