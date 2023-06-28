@@ -34,3 +34,34 @@ Siga os passos abaixo para configurar o projeto em sua máquina local:
 
    ```bash
    git clone https://github.com/Samanta00/Marketplace.git
+
+2. Instalação de dependências:
+ abra a parta do projeto no terminal 
+ cd backend
+ composer install
+ npm install
+
+3. Utilização do banco de dados:
+Copie o arquivo .env.example e renomeie para .env:
+exemplo: cp .env.example .env
+
+4. Configure o arquivo .env com as informações do banco de dados:
+Para uma Facilidade Maior utiliza o banco de dados utilizado para a criação desse projeto
+DB_CONNECTION=pgsql
+DB_HOST=snuffleupagus.db.elephantsql.com
+DB_PORT=5432
+DB_DATABASE=dllpzhjv
+DB_USERNAME=dllpzhjv
+DB_PASSWORD=gAiRTM_M_R_svn4kUOHesFkSLkIm1Izu
+
+5. Gere uma nova chave para a aplicação:
+php artisan key:generate
+
+6. Execute as migrações do banco de dados:
+php artisan migrate
+
+7. Inicie o servidor de desenvolvimento:
+php artisan serve
+
+
+
