@@ -146,7 +146,7 @@ export class CartComponent {
     
     if (!selectedProduct) return;
     if (this.newProduct.quantity > selectedProduct.stock_quantity) return console.log('Quantidade excede o estoque disponível');
-    if (!this.newProduct.quantity || this.newProduct.quantity<0) {
+    if (!this.newProduct.quantity || this.newProduct.quantity<=0) {
       this.stockMessage = 'A quantidade precisa ser preenchida.';
       return;
     }
@@ -175,25 +175,31 @@ export class CartComponent {
 
 
 //edita os produtos
-  editProduct() {
-    if (this.editedProduct.id !== null && this.editedProduct.id !== undefined) {
-      this.editedProduct.product_name = this.editedProduct.selectedProduct;
-      this.editedProduct.category_id = this.editedProduct.selectedCategory !== undefined ? this.editedProduct.selectedCategory : 0;
-  
-      this.productService.editCart(this.editedProduct.id, this.editedProduct).subscribe(
-        (response) => {
-          console.log('produto atualizado com sucesso', response);
-          this.showEditFormFlag = false; // Esconde o formulário de edição
-          this.refreshProducts$.next(); // Aciona a atualização dos produtos
-        },
-        (error) => {
-          console.log(error);
-        }
-      );
-    } else {
-      console.log('ID do produto não definido');
+editProduct() {
+  if (this.editedProduct.id !== null && this.editedProduct.id !== undefined) {
+    if (!this.editedProduct.stock_quantity || this.editedProduct.stock_quantity <= 0) {
+      console.log('A quantidade precisa ser preenchida e maior que zero.');
+      return;
     }
+    console.log('produto atualizado com sucesso')
+    
+    this.editedProduct.product_name = this.editedProduct.selectedProduct;
+    this.editedProduct.category_id = this.editedProduct.selectedCategory !== undefined ? this.editedProduct.selectedCategory : 0;
+
+    this.productService.editCart(this.editedProduct.id, this.editedProduct).subscribe(
+      (response) => {
+        console.log('Produto atualizado com sucesso', response);
+        this.showEditFormFlag = false; // Esconde o formulário de edição
+        this.refreshProducts$.next(); // Aciona a atualização dos produtos
+      },
+      (error) => {
+        console.log(error);
+      }
+    );
+  } else {
+    console.log('ID do produto não definido');
   }
+}
 
   
 //remove os produtos de carrinho

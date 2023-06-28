@@ -70,7 +70,8 @@
       <div class="form-group">
         <label for="edit-quantity">Quantidade</label>
         <input type="number" id="edit-quantity" name="edit-quantity" [(ngModel)]="editedProduct.stock_quantity" required>
-      </div>
+        <p *ngIf="!editedProduct.stock_quantity || editedProduct.stock_quantity <= 0" class="quantity-error">A quantidade precisa ser preenchida e maior que zero.</p>
+      </div> 
 
       <button class="add-button" type="submit">Atualizar</button>
     </form>
