@@ -6,14 +6,18 @@ interface Category {
   category_gender: string;
   created_at: string;
   updated_at: string;
-  
 }
 
 interface Product {
   id: number;
   product_name: string;
   category_id: number;
-  product_price: number; 
+  product_price: number;
+  image: string; // Adicionada a propriedade image para a URL da imagem
+}
+
+interface ImageCategoryMap {
+  [categoryId: number]: string;
 }
 
 @Component({
@@ -26,6 +30,11 @@ export class ProductCatalogComponent {
   products: Product[] = [];
   filteredProducts: Product[] = [];
   selectedCategoryId: number | null = null;
+  imageCategoryMap: ImageCategoryMap = {
+    29: '../../../assets/produts/friosLaticinios.jpg',
+  
+    // Adicione outras associações de ID da categoria para URL da imagem
+  };
 
   constructor(private productService: ProductsService) {
     this.listCategories();
@@ -41,10 +50,14 @@ export class ProductCatalogComponent {
 
   getProducts() {
     this.productService.getProducts().subscribe((products) => {
-      this.products = products;
+      this.products = products.map((product) => ({
+        ...product,
+        image: this.imageCategoryMap[product.category_id]
+      }));
       console.log(this.products);
     });
   }
+
   filterProductsByCategory(categoryId: number) {
     this.selectedCategoryId = categoryId;
     this.filteredProducts = this.products.filter((product) => product.category_id === categoryId);
