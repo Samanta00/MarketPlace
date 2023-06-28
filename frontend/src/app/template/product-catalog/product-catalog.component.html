@@ -1,0 +1,19 @@
+<div class="product-catalog">
+  <h2>Categorias</h2>
+  <ul class="categories">
+    <li *ngFor="let category of categories" (click)="filterProductsByCategory(category.id)">
+      {{ category.category_gender }}
+    </li>
+  </ul>
+
+  <h2>Produtos</h2>
+  <div *ngIf="selectedCategoryId" class="product-list">
+    <div *ngFor="let product of filteredProducts" class="product-item">
+      <div class="product-name">{{ product.product_name }}</div>
+      <div class="product-price">{{ product.product_price | currency }}</div>
+    </div>
+  </div>
+
+  <h3>Gostou das Nossas ofertas?</h3>
+  <p>Venha encher o seu carrinho de compras</p>
+</div>
