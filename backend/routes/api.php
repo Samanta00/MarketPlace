@@ -23,22 +23,22 @@ use App\Http\Controllers\ImageProductController;
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+//rota para produtos
 Route::get('/products', [ProductsController::class, 'index']);
 Route::post('/products', [ProductsController::class, 'store']);
 Route::get('/edit/{id}', [ProductsController::class, 'edit']);
 Route::put('/update/{id}', [ProductsController::class, 'update']);
 Route::delete('/delete/{id}', [ProductsController::class, 'destroy']);
 
-
+//rotas para categorias
 Route::get('/categories', [CategoriesController::class, 'index']);
 Route::post('/categories', [CategoriesController::class, 'store']);
 Route::delete('/categories/{id}', [CategoriesController::class, 'destroy']);
 
+//rotas para produtos do carrinho do usuario
 Route::get('/cart', [CartClientController::class, 'index']);
 Route::post('/cart', [CartClientController::class, 'store']);
 Route::put('/cartupdate/{id}', [CartClientController::class, 'update']);
 Route::delete('/cart/{id}', [CartClientController::class, 'destroy']);
 
-
-Route::get('/image', [ImageProductController::class, 'show']);
-Route::post('/image', [ImageProductController::class, 'create']);
