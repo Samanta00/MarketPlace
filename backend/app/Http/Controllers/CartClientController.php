@@ -9,7 +9,7 @@ use App\Models\CartClient;
 class CartClientController extends Controller
 {
     protected $model;
-    public function __construct(CartClient $cart){
+    public function __construct(CartService $cart){
         $this->model=$cart;
     }
     /**
@@ -17,6 +17,7 @@ class CartClientController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    
     //função para ler os valores chamados da model
     public function index()
     {
