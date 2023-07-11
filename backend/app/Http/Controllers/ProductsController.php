@@ -1,125 +1,49 @@
 <?php
+class ProductController {
+    private $productService;
 
-namespace App\Http\Controllers;
-
-use App\Models\Products;
-use Illuminate\Http\Request;
-
-
-class ProductsController extends Controller
-{
-
-    protected $model;
-    public function __construct(Products $products){
-        $this->model=$products;
-    }
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    //função para visualizar
-    public function index()
-    {
-        return response()->json($this->model->all());
+    public function __construct(ProductsService $productService) {
+        $this->productService = $productService;
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
+    public function store($request) {
+        // Obtenha os dados do produto do request
+        $data = $request->all();
+
+        // Chame o método store do ProductsService
+        $product = $this->productService->store($data);
+     
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-      //função para adicionar novos valores para a model
-    public function store(Request $request)
-    {
-        try {
-            $this->model->create($request->all());
-            return response('Criado com sucesso');
-        } catch (Exception $exception) {
-            throw $exception;
-        }
+    public function get($id) {
+        // Chame o método get do ProductsService
+        $product = $this->productService->get($id);
+
+
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
+    public function getList() {
+        // Chame o método getList do ProductsService
+        $products = $this->productService->getList();
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    // função para atualizar 
-    public function edit($id)
-    {
-        $products=$this->model->find($id);
-        if(!$products){
-            return response("product not found");
-        }
-        return response($products);
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    //função para atualizar por id 
-    public function update(Request $request, $id)
-    {
-        $products = $this->model->find($id);
-        if (!$products) {
-            return response('product not found');
-        }
-        try {
-            $data = $request->all();
-            $products->fill($data)->save();
-            return response('your product was updated');
-        } catch (\Throwable $th) { // Definir o tipo de exceção como \Throwable
-            return $th;
-        }
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    //função que irá remover por id
-    public function destroy($id)
-    {
-        $products = $this->model->find($id);
-        if (!$products) {
-            return response("product not found");
-        }
-        try {
-            $products->delete();
-            return response("your product was deleted");
-        } catch (\Exception $exception) {
-            return $exception;
-        }
-    }
     
+    }
+
+    public function update($request, $id) {
+        // Obtenha os dados atualizados do produto do request
+        $data = $request->all();
+
+        // Chame o método update do ProductsService
+        $product = $this->productService->update($data, $id);
+
+
+        
+    }
+
+    public function destroy($id) {
+        
+        $this->productService->destroy($id);
+
+    }
 }
+?>
