@@ -1,8 +1,8 @@
 <?php
 class CartService{
 private $repo;
-public function __construct(Model $model){
-    return $this->model=$model;
+public function __construct($model){
+    return $this->repo=$model;
 }
 
 public function store(array $data){
@@ -24,7 +24,7 @@ public function update(array $data, $id){
 }
 
 public function destroy($id){
-    return $this->repo->destroy($id)
+    return $this->repo->destroy($id);
 }
 }
 
