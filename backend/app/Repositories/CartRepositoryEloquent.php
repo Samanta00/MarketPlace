@@ -1,7 +1,7 @@
 <?php
 class CartRepositoryEloquent implements CartRepositoryInterface{
 protected $model;
-public function __construct(Model $model){
+public function __construct($model){
     return $this->model=$model;
 }
 
@@ -9,7 +9,7 @@ public function store(array $data){
     return $this->model->create($data);
 }
 
-public function get(array $id){
+public function get($id){
     return $this->model->find();
 }
 
@@ -24,8 +24,9 @@ public function update(array $data, $id){
 }
 
 public function destroy($id){
-    return $this->model->find($id)->delete()
+    return $this->model->find($id)->delete();
 }
+
 }
 
 ?>
