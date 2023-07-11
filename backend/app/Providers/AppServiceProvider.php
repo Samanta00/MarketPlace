@@ -13,7 +13,11 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        $this->app->bind( 'CartRepositoryInterface', 'CartRepositoryEloquent' );
+        $this->app->bind('App\Repositories\CartRepositoryInterface', 'App\Repositories\CartRepositoryEloquent' );
+
+        $this->app->bind('App\Repositories\CartRepositoryInterface', function(){
+            return new CartRepositoryEloquent(new Cart());
+        });
     }
 
     /**

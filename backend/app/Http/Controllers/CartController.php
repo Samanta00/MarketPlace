@@ -1,5 +1,7 @@
 <?php
 
+use App\Services\CartService;
+use Illuminate\http\Request;
 class CartController extends Controller {
 private $service;
 public function __construct(CartService $service){
@@ -32,7 +34,7 @@ public function update(array $data, $id){
 }
 
 public function destroy($id){
-    return $this->service->destroy();
+    return $this->service->destroy($id);
 }
 }
 

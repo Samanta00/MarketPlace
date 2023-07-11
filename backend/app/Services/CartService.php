@@ -24,7 +24,7 @@ public function update(array $data, $id){
 }
 
 public function destroy($id){
-    return $this->repo->destroy()
+    return $this->repo->destroy($id)
 }
 }
 
