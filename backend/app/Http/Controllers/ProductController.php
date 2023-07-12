@@ -1,8 +1,9 @@
 <?php
 
 namespace App\Http\Controllers;
-use Illuminate\Http\Request;
+
 use App\Services\ProductsService;
+use Illuminate\Http\Request;
 
 class ProductController
 {
@@ -13,44 +14,43 @@ class ProductController
         $this->productService = $productService;
     }
 
-    public function store($request) {
-        // Obtenha os dados do produto do request
+    public function store(Request $request)
+    {
         $data = $request->all();
-
-        // Chame o método store do ProductsService
         $product = $this->productService->store($data);
-     
+        return response()->json($product, 201);
     }
 
-    public function get($id) {
+    public function get($id)
+    {
         // Chame o método get do ProductsService
         $product = $this->productService->get($id);
-
-
+        return response()->json($product, 201);
     }
 
-    public function getList() {
+    public function getList()
+    {
         // Chame o método getList do ProductsService
         $products = $this->productService->getList();
 
-    
+        return response()->json($products, 201);
     }
 
-    public function update($request, $id) {
+    public function update(Request $request, $id)
+    {
         // Obtenha os dados atualizados do produto do request
         $data = $request->all();
 
         // Chame o método update do ProductsService
         $product = $this->productService->update($data, $id);
 
-
-        
+        return response()->json($product, 201);
     }
 
-    public function destroy($id) {
-        
-        $this->productService->destroy($id);
+    public function destroy($id)
+    {
 
+        $product =  $this->productService->destroy($id);
+        return response()->json($product, 201);
     }
 }
-?>
