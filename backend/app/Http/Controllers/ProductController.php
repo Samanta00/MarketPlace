@@ -1,8 +1,15 @@
 <?php
-class ProductController {
+
+namespace App\Http\Controllers;
+use Illuminate\Http\Request;
+use App\Services\ProductsService;
+
+class ProductController
+{
     private $productService;
 
-    public function __construct(ProductsService $productService) {
+    public function __construct(ProductsService $productService)
+    {
         $this->productService = $productService;
     }
 

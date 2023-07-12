@@ -42,16 +42,16 @@ class CategoriesController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    //função para adicionar novos valores para a model
-    public function store(Request $request)
-    {
-        try {
-            $this->model->create($request->all());
-            return response('Criado com sucesso');
-        } catch (Exception $exception) {
-            throw $exception;
-        }
-    }
+    // //função para adicionar novos valores para a model
+    // public function store(Request $request)
+    // {
+    //     try {
+    //         $this->model->create($request->all());
+    //         return response('Criado com sucesso');
+    //     } catch (Exception $exception) {
+    //         throw $exception;
+    //     }
+    // }
 
     /**
      * Display the specified resource.

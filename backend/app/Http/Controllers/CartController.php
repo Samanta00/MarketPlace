@@ -1,9 +1,13 @@
 <?php
+namespace App\Http\Controllers;
+use Illuminate\Http\Request;
+use App\Services\CartService;
+use CartService as GlobalCartService;
 
 class CartController {
     private $cartService;
 
-    public function __construct(CartService $cartService) {
+    public function __construct(GlobalCartService $cartService) {
         $this->cartService = $cartService;
     }
 
