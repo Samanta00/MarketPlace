@@ -1,5 +1,5 @@
 <?php
-
+namespace app\Repositories;
 interface ProductsRepositoryInterface {
     // public function __contruct($model);
     public function store(array $data);

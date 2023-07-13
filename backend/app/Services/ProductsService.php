@@ -1,14 +1,15 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Services;
+use App\Repositories\ProductsRepositoryInterface;
 
 class ProductsService
 {
     private $repo;
 
-    public function __construct($model)
+    public function __construct(ProductsRepositoryInterface $repo)
     {
-        $this->repo = $model;
+        $this->repo = $repo;
     }
 
     public function store(array $data)

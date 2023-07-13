@@ -3,6 +3,8 @@
 namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
+use App\Repositories\ProductsRepository;
+use App\Repositories\ProductsRepositoryInterface;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -13,11 +15,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        $this->app->bind('App\Repositories\CartRepositoryInterface', 'App\Repositories\CartRepositoryEloquent' );
-
-        $this->app->bind('App\Repositories\CartRepositoryInterface', function(){
-            return new CartRepositoryEloquent(new Cart());
-        });
+        $this->app->bind(ProductsRepositoryInterface::class, ProductsRepository::class);
     }
 
     /**

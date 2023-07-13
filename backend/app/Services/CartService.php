@@ -1,4 +1,6 @@
 <?php
+namespace App\Services;
+
 class CartService{
 private $repo;
 public function __construct($model){

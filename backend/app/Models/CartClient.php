@@ -20,8 +20,6 @@ class CartClient extends Model
         'perishable_product',
         'stock_quantity',
     ];
-
-   
     public function category()
     {
         return $this->belongsTo(CategoryProduct::class, 'category_id');

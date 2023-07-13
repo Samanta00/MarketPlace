@@ -1,4 +1,6 @@
 <?php
+namespace app\Repositories;
+
 class ProductsRepositoryEloquent implements ProductsRepositoryInterface{
 protected $model;
 public function __construct($model){
