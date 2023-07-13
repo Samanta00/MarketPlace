@@ -1,12 +1,14 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Services;
+
+use App\Repositories\ProductsRepositoryEloquent;
 
 class ProductsService
 {
     private $repo;
 
-    public function __construct($model)
+    public function __construct(ProductsRepositoryEloquent $model)
     {
         $this->repo = $model;
     }
@@ -16,7 +18,7 @@ class ProductsService
         return $this->repo->store($data);
     }
 
-    public function get(array $id)
+    public function get($id)
     {
         return $this->repo->get($id);
     }
