@@ -9,5 +9,9 @@ use App\Http\Controllers\Api\AuthController;
 use App\Http\Controllers\Api\UserController;
 use App\Http\Middleware\Authenticate;
 
-Route::post('auth/login', [AuthController::class, 'login']);
-Route::get('users', [UserController::class, 'index']);
+Route::group(['middleware' => 'api'], function ($router){
+    Route::post('login', [AuthController::class, 'login']);
+});
+
+
+//Route::get('users', [UserController::class, 'index']);
